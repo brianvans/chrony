@@ -9,6 +9,7 @@ Configures the time synchronization application `chrony` as a client or master t
 ### Platforms
 
 - Debian / Ubuntu
+- Rhel / Centos / Fedora / Amazon Linux
 
 ### Chef
 

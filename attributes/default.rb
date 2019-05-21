@@ -32,3 +32,17 @@ default['chrony']['allow'] = ['allow']
 
 # set in the client & master recipes
 default['chrony']['initslewstep'] = ''
+
+default['chrony']['service'] = 'chrony'
+default['chrony']['conffile'] = '/etc/chrony/chrony.conf'
+default['chrony']['driftfile'] = '/var/lib/chrony/chrony.drift'
+default['chrony']['keysfile'] = '/etc/chrony/chrony.keys'
+
+# Platform specific overrides
+case node['platform_family']
+when 'rhel', 'fedora', 'amazon'
+  default['chrony']['service'] = 'chronyd'
+  default['chrony']['conffile'] = '/etc/chrony.conf'
+  default['chrony']['driftfile'] = '/var/lib/chrony/drift'
+  default['chrony']['keysfile'] = '/etc/chrony.keys'
+end

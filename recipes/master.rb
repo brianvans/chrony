@@ -19,9 +19,9 @@
 
 package 'chrony'
 
-service 'chrony' do
+service node['chrony']['service'] do
   supports restart: true, status: true, reload: true
-  action [ :enable]
+  action [ :enable ]
 end
 
 # set the allowed hosts to the subnet
@@ -46,10 +46,10 @@ else # else use first 3 clients
   end
 end
 
-template '/etc/chrony/chrony.conf' do
+template node['chrony']['conffile'] do
   owner 'root'
   group 'root'
   mode '0644'
   source 'chrony.conf.erb'
-  notifies :restart, 'service[chrony]'
+  notifies :restart, "service[#{node['chrony']['service']}]"
 end
